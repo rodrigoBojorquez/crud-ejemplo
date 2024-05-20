@@ -26,7 +26,7 @@ todosRouter.get("/:id", (req, res) => {
         res.status(404).send("Todo inexistente")
     }
 
-    res.status(200).send(todo)
+    res.status(200).send(todo) 
 })
 
 todosRouter.put(`/:id`, (req, res)  => {
