@@ -12,7 +12,7 @@ todosRouter.post("/", (req, res) => {
     const  todo  = req.body
     console.log(todo)
     let formatedTodo = todo
-    formatedTodo["id"] = todos.length + 1
+    formatedTodo["id"] = todos.length
     todos.push(formatedTodo)
 
     res.status(200).send("Todo agregado correctamente")
@@ -38,7 +38,8 @@ todosRouter.put(`/:id`, (req, res)  => {
         res.status(404).send("Todo inexistente")
     }
 
-    todos[id] = todo
+    todos[oldTodo.id]["name"] = todo.name
+    todos[oldTodo.id]["isComplete"] = todo.isComplete
 
     res.status(200).send("Todo actualizado")
 })
@@ -51,7 +52,7 @@ todosRouter.delete(`/:id`, (req, res) => {
         res.status(404).send("Todo inexistente")
     }
 
-    todos = todos.filter(todo => todo.id !== id)
+    todos = todos.filter(todo => todo.id !== parseInt(id))
 
     res.status(200).send("Todo eliminado")
 })
